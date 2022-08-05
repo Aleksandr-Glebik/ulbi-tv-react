@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import './styles/App.css'
 import PostList from './components/PostList'
 import MyButton from './components/UI/button/MyButton'
@@ -13,27 +13,36 @@ function App() {
   ])
 
   const [title, setTitle] = useState('')
-  const bodyInputRef = useRef()
+  const [body, setBody] = useState('')
 
   const addNewPost = (event) => {
     event.preventDefault()
-    console.log('title', title);
-    console.log(bodyInputRef.current);
-    console.log(bodyInputRef.current.value);
+    const newPost = {
+      id: Date.now(),
+      title,
+      body
+    }
+    console.log('newPost', newPost);
+    setPosts([...posts, newPost])
+    setTitle('')
+    setBody('')
   }
 
   return (
     <div className='App'>
       <form>
-        {/* управляемый компонент */}
         <MyInput
           type={'text'}
           placeholder={'Название поста'}
           value={title}
           onChange={ event => setTitle(event.target.value)}
         />
-        {/* неуправляемый или неконтролируемый компонент */}
-        <MyInput ref={bodyInputRef} type={'text'} placeholder={'Описание поста'}/>
+        <MyInput
+         type={'text'}
+         placeholder={'Описание поста'}
+          value={body}
+          onChange={ event => setBody(event.target.value)}
+        />
         <MyButton onClick={addNewPost}>Создать пост</MyButton>
       </form>
       <PostList posts={posts} title='Список постов 1'/>
