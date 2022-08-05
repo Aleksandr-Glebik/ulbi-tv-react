@@ -1,7 +1,7 @@
 import React from "react"
 import PostItem from "./PostItem"
 
-const PostList = ({posts, title}) => {
+const PostList = ({posts, title, remove}) => {
     // console.log('props', props);
     return (
         <React.Fragment>
@@ -11,7 +11,7 @@ const PostList = ({posts, title}) => {
                 {title}
             </h1>
             {posts.map( (post, index) => {
-                return <PostItem number={index + 1} key={post.id} post={post} />
+                return <PostItem remove={remove} number={index + 1} key={post.id} post={post} />
             })}
         </React.Fragment>
     )
