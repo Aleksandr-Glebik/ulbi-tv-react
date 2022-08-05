@@ -1,7 +1,7 @@
 import React from "react"
 
 const PostItem = (props) => {
-    console.log('props', props);
+    // console.log('props', props);
     return (
         <div className='post'>
             <div className='post__content'>
