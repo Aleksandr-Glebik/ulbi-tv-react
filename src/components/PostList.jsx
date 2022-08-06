@@ -2,7 +2,15 @@ import React from "react"
 import PostItem from "./PostItem"
 
 const PostList = ({posts, title, remove}) => {
-    // console.log('props', props);
+
+    if (!posts.length) {
+        return (
+            <div >
+                <h1 style={{textAlign: 'center'}}>Посты не были найдены!!!</h1>
+            </div>
+        )
+    }
+
     return (
         <React.Fragment>
             <h1
