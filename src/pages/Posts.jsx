@@ -26,7 +26,7 @@ function Posts() {
     const response = await PostService.getAll(limit, page)
     setPosts(response.data)
     const totalCount = response.headers['x-total-count']
-    console.log('x-total-count', response.headers['x-total-count']);
+    // console.log('x-total-count', response.headers['x-total-count']);
     setTotalPages(getPageCount(totalCount, limit))
   })
 
