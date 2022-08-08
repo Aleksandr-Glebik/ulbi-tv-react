@@ -15,5 +15,10 @@ export const privateRoutes = [
 ]
 
 export const publicRoutes = [
+    {path: '/', element: <Login />, exact: true },
     {path: '/login', element: <Login />, exact: true },
+    {path: '/about', element: <Login />, exact: true },
+    {path: '/posts', element: <Login />, exact: true },
+    {path: '/posts/:id', element: <Login />, exact: true },
+    {path: '*', element: <Error />, exact: true },
 ]
