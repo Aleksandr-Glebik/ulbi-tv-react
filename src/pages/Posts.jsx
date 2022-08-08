@@ -12,6 +12,7 @@ import PostService from '../API/PostService'
 import { useFetching } from '../hooks/useFetching'
 import Pagination from '../components/UI/pagination/Pagination'
 import { useObserver } from '../hooks/useObserver'
+import MySelect from '../components/UI/select/MySelect'
 
 function Posts() {
 
@@ -42,7 +43,7 @@ function Posts() {
 
   useEffect( () => {
     fetchPosts(limit, page)
-  }, [page])
+  }, [page, limit])
 
   const removePost = (post) => {
     setPosts(posts.filter( p => p.id !== post.id))
@@ -67,6 +68,17 @@ function Posts() {
         filter={filter}
         setFilter={setFilter}
       />
+      <MySelect
+        value={limit}
+        onChange={value => setLimit(value)}
+        defaultValue='Кол-во элементов на странице'
+        options={[
+          {value: 5, name: '5'},
+          {value: 10, name: '10'},
+          {value: 25, name: '25'},
+          {value: -1, name: 'Показать все'},
+        ]}
+      />
 
       { postError &&
           <hi style={{display: 'flex', justifyContent: 'center'}}>Произошла ошибка {postError}</hi>
@@ -77,7 +89,7 @@ function Posts() {
         page={page}
        changePage={changePage}
       />
-      
+
       <PostList
             remove={removePost}
             posts={sortedAndSearchedPosts}
